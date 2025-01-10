@@ -9,6 +9,15 @@ function calcularMedia() {
         return;
     }
 
+    if (Boolean(nota1) === false) {
+        alert("por favor, preencha a primeira nota.");
+        return;
+    }
+    
+    if (Boolean(nota2) === false || Boolean(nota3) === false) {
+        alert("Há campos vazios");
+        return;
+    }
     const resultado = document.getElementById("resultado")
 
     const media = (nota1 + nota2 + nota3) / 3;
