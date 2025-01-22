@@ -1,28 +1,22 @@
-    document.getElementById('imcForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Evita o envio do formulário
+function calcularImc(event) {
+  event.preventDefault();
 
-      // Captura os valores de peso e altura
-      const height = parseFloat(document.getElementById('height').value);
-      const weight = parseFloat(document.getElementById('weight').value);
+  const alturaInput = parseFloat(document.getElementById("height").value);
+  const pesoInput = parseFloat(document.getElementById("weight").value);
 
-      // Calcula o IMC
-      const imc = weight / (height * height);
-      const imcValue = document.getElementById('imcValue');
-      const imcCategory = document.getElementById('imcCategory');
-      const result = document.getElementById('result');
+  const calculo = pesoInput / (alturaInput * alturaInput);
+  let categoria = "";
 
-      // Exibe o resultado
-      imcValue.textContent = imc.toFixed(2);
-      result.style.display = 'block';
+  if (calculo <= 18.5) {
+    categoria = "Abaixo do peso";
+  } else if (calculo <= 24.9) {
+    categoria = "Peso adequado";
+  } else {
+    categoria = "Obesidade";
+  }
 
-      // Classificação do IMC
-      if (imc < 28.5) {
-        imcCategory.textContent = "Classificação: Abaixo do peso";
-      } else if (imc < 34.9) {
-        imcCategory.textContent = "Classificação: Peso normal";
-      } else if (imc < 59.9) {
-        imcCategory.textContent = "Classificação: Sobrepeso";
-      } else {
-        imcCategory.textContent = "Classificação: Obesidade";
-      }
-    });
+  document.getElementById("imcValue").innerHTML = calculo.toFixed(2);
+  document.getElementById("imcCategory").innerHTML = categoria;
+  
+  document.getElementById("result").style.display = "block";
+}
